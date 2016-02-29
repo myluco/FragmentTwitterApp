@@ -1,6 +1,6 @@
-# Simple Twitter Client
+# Extended Twitter Client using Fragments
 
-# Pre-work - Simple Twitter Client
+# Pre-work - Extended Twitter Client using Fragments
 
  Extend our Twitter client from previous project to use a tabbed interface and fragments.
 
