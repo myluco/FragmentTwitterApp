@@ -10,7 +10,7 @@ Submitted by: Luiza Carneiro
 
 The following user stories must be completed:
 
-(User Stories from Week 3)
+### (User Stories from Week 3)
 * [x]  User can sign in to Twitter using OAuth login (2 points)
 * [x]  User can view the tweets from their home timeline
 * [x]  User should be displayed the username, name, and body for each tweet (2 points)
@@ -21,7 +21,7 @@ The following user stories must be completed:
 * [x] User can then enter a new tweet and post this to twitter (2 points)
 * [x] User is taken back to home timeline with new tweet visible in timeline (1 point)
 
-(New User Stories)
+### (New User Stories)
 User can switch between Timeline and Mention views using tabs. (4 points)
 * [x] User can view their home timeline tweets.
 * [x] User can view the recent mentions of their username.
@@ -37,7 +37,7 @@ User can click on the profile image in any tweet to see another user's profile. 
 * [x] User can infinitely paginate any of these timelines (home, mentions, user) by scrolling to the bottom (1 point)
 
 
-The following advanced user stories are optional but recommended:
+## The following advanced user stories are optional but recommended:
 
 * [] Advanced: Robust error handling, check if internet is available, handle error cases, network failures (1 point)
 * [] Advanced: When a network request is sent, user sees an indeterminate progress indicator (1 point)
