@@ -1,9 +1,11 @@
 package com.myluco.tweet.handler;
 
+import android.widget.Toast;
+
 import com.activeandroid.util.Log;
 import com.loopj.android.http.JsonHttpResponseHandler;
-import com.myluco.tweet.TweetsArrayAdapter;
-import com.myluco.tweet.models.Tweet;
+import com.myluco.tweet.adapter.TweetsArrayAdapter;
+import com.myluco.tweet.model.Tweet;
 
 import org.apache.http.Header;
 import org.json.JSONArray;
@@ -34,7 +36,7 @@ public class HometimeResponseHandler extends JsonHttpResponseHandler {
     @Override
     public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
         Log.v("DEBUG", errorResponse.toString());
-//            Toast.makeText(getApplicationContext(),"FAILURE 1",Toast.LENGTH_LONG).show();
+            Toast.makeText(adTweet.getContext(), "FAILURE 1", Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -46,7 +48,7 @@ public class HometimeResponseHandler extends JsonHttpResponseHandler {
     @Override
     public void onUserException(Throwable error) {
         Log.v("DEBUG", error.toString());
-//                Toast.makeText(getApplicationContext(),"FAILURE 4",Toast.LENGTH_LONG).show();
+               Toast.makeText(adTweet.getContext(),"FAILURE 4",Toast.LENGTH_LONG).show();
     }
 
 

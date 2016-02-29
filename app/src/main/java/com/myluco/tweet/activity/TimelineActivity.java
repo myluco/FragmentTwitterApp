@@ -1,38 +1,37 @@
-package com.myluco.tweet;
+package com.myluco.tweet.activity;
 
-import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.os.Message;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.activeandroid.util.Log;
+import com.astuetz.PagerSlidingTabStrip;
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
-import com.loopj.android.http.ResponseHandlerInterface;
-import com.myluco.tweet.fragments.HomeTimelineFragment;
-import com.myluco.tweet.fragments.TweetsListFragment;
-import com.myluco.tweet.handler.HometimeResponseHandler;
+import com.myluco.tweet.R;
+import com.myluco.tweet.TwitterApplication;
+import com.myluco.tweet.TwitterClient;
+import com.myluco.tweet.fragment.HomeTimelineFragment;
+import com.myluco.tweet.fragment.MentionsTimelineFragment;
 import com.myluco.tweet.handler.RateLimitHandler;
-import com.myluco.tweet.models.Tweet;
-import com.myluco.tweet.models.User;
+import com.myluco.tweet.model.Tweet;
+import com.myluco.tweet.model.User;
 
 import org.apache.http.Header;
-import org.apache.http.HttpResponse;
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.net.URI;
 import java.util.ArrayList;
-import java.util.List;
 
 public class TimelineActivity extends AppCompatActivity {
 
@@ -44,6 +43,8 @@ public class TimelineActivity extends AppCompatActivity {
     private Tweet newTweet;
     private HomeTimelineFragment fragmentTweetsList;
 
+    private GoogleApiClient client2;
+
 //    private HometimeResponseHandler handler;
 
     @Override
@@ -53,17 +54,29 @@ public class TimelineActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
 
-        client = com.myluco.tweet.TwitterApplication.getRestClient();
+        //For the sliding Tabs
+        //get view pager
+        ViewPager vp = (ViewPager) findViewById(R.id.viewpager);
+        //set the adapter
+        vp.setAdapter(new TweetsPagerAdapter(getSupportFragmentManager()));
+
+        //populate view pager indicator
+        PagerSlidingTabStrip tabStrip = (PagerSlidingTabStrip) findViewById(R.id.tabs);
+        //attach tab strip to view pager
+        tabStrip.setViewPager(vp);
+        //end of sliding tabs
+
+        client = TwitterApplication.getRestClient();
 //        getRateLimits();
 //        populate();
 //        populateTimeline(count);
         populateUser();
 
+
     }
 
 
     //send API; fill listView
-
 
 
     private void populateUser() {
@@ -125,8 +138,6 @@ public class TimelineActivity extends AppCompatActivity {
     }
 
 
-
-
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // Check which request we're responding to
         if (requestCode == COMPOSE_ACTIVITY) {
@@ -160,6 +171,46 @@ public class TimelineActivity extends AppCompatActivity {
 
         }
 
+    }
+
+    public void onProfileSelected(MenuItem item) {
+        //launch Profile
+        Intent i = new Intent(this, ProfileActivity.class);
+        i.putExtra("User", user);
+        startActivity(i);
+
+    }
+
+
+
+    //returns the order of the fragments in View Pager
+    public class TweetsPagerAdapter extends FragmentPagerAdapter {
+
+        private String tabTitles[] = {"Home", "Mentions"};
+
+        //how adapter gets the manager that insert/remove fragment from activity
+        public TweetsPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return tabTitles[position];
+        }
+
+        //order and creationg of fragments within the pager
+        @Override
+        public Fragment getItem(int pos) {
+            if (pos == 0) return new HomeTimelineFragment();
+            else if (pos == 1) return new MentionsTimelineFragment();
+            return null;
+        }
+
+        @Override
+        public int getCount() {
+            return tabTitles.length;
+        }
     }
 }
 

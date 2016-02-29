@@ -1,27 +1,23 @@
-package com.myluco.tweet;
+package com.myluco.tweet.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.myluco.tweet.R;
-import com.myluco.tweet.models.Tweet;
-import com.myluco.tweet.models.User;
+import com.myluco.tweet.TwitterClient;
+import com.myluco.tweet.model.Tweet;
+import com.myluco.tweet.model.User;
 import com.squareup.picasso.Picasso;
 
 import org.apache.http.Header;
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class ComposeActivity extends AppCompatActivity {

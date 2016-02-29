@@ -1,4 +1,4 @@
-package com.myluco.tweet.models;
+package com.myluco.tweet.model;
 
 
 import android.text.format.DateUtils;

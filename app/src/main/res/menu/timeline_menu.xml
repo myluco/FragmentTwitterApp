@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".activities.TimelineActivity">>
+    tools:context=".activity.TimelineActivity">>
 
 
     <item
@@ -11,6 +11,14 @@
         android:title="@string/action_compose"
         app:showAsAction="ifRoom"
         android:onClick="onComposeSelected"/>
+
+    <item
+android:id="@+id/action_profile"
+        android:icon="@drawable/ic_profile"
+        android:title="Profile"
+        app:showAsAction="ifRoom"
+        android:onClick="onProfileSelected"
+        />
 
     <!-- Settings, should always be in the overflow -->
     <item

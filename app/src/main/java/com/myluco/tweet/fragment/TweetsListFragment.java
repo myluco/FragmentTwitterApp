@@ -1,27 +1,18 @@
-package com.myluco.tweet.fragments;
+package com.myluco.tweet.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.activeandroid.util.Log;
-import com.loopj.android.http.JsonHttpResponseHandler;
-import com.myluco.tweet.EndlessScrollListener;
+import com.myluco.tweet.listener.EndlessScrollListener;
 import com.myluco.tweet.R;
-import com.myluco.tweet.TweetsArrayAdapter;
-import com.myluco.tweet.TwitterClient;
+import com.myluco.tweet.adapter.TweetsArrayAdapter;
 import com.myluco.tweet.handler.HometimeResponseHandler;
-import com.myluco.tweet.models.Tweet;
-import com.myluco.tweet.models.User;
-
-import org.apache.http.Header;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import com.myluco.tweet.model.Tweet;
 
 import java.util.ArrayList;
 import java.util.List;

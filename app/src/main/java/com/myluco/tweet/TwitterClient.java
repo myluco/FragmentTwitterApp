@@ -7,11 +7,10 @@ import android.content.Context;
 
 import com.codepath.oauth.OAuthBaseClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
-import com.myluco.tweet.fragments.TweetsListFragment;
+import com.myluco.tweet.fragment.TweetsListFragment;
 import com.myluco.tweet.handler.HometimeResponseHandler;
-import com.myluco.tweet.models.Tweet;
+import com.myluco.tweet.model.Tweet;
 
 /*
  * 
@@ -60,7 +59,7 @@ public class TwitterClient extends OAuthBaseClient {
 	}
 
     //rate Limit
-    void getRateLimit(AsyncHttpResponseHandler handler) {
+    public void getRateLimit(AsyncHttpResponseHandler handler) {
         String apiUrl = getApiUrl("application/rate_limit_status.json");
 		// Can specify query string params directly or through RequestParams.
 		RequestParams params = new RequestParams();
@@ -68,7 +67,20 @@ public class TwitterClient extends OAuthBaseClient {
 		getClient().get(apiUrl, params, handler);
     }
 
-	void getUser(AsyncHttpResponseHandler handler) {
+	public void getUserTimeline(AsyncHttpResponseHandler handler,String screenName, long maxId) {
+		String apiUrl = getApiUrl("statuses/user_timeline.json");
+		// Can specify query string params directly or through RequestParams.
+		RequestParams params = new RequestParams();
+		params.put("count", TweetsListFragment.PER_PAGE);
+		params.put("screen_name",screenName);
+		if (maxId == 0) {
+			params.put("since_id", 1);
+		}else {
+			params.put("max_id",maxId);
+		}
+		getClient().get(apiUrl, params, handler);
+	}
+	public void getUser(AsyncHttpResponseHandler handler) {
 		String apiUrl = getApiUrl("account/verify_credentials.json");
 		// Can specify query string params directly or through RequestParams.
 		RequestParams params = new RequestParams();

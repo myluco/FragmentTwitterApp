@@ -1,4 +1,4 @@
-package com.myluco.tweet;
+package com.myluco.tweet.adapter;
 
 import android.content.Context;
 import android.text.format.DateUtils;
@@ -9,7 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.myluco.tweet.models.Tweet;
+import com.myluco.tweet.R;
+import com.myluco.tweet.model.Tweet;
 import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;

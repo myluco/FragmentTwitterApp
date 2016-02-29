@@ -1,4 +1,4 @@
-package com.myluco.tweet.models;
+package com.myluco.tweet.model;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,6 +20,10 @@ public class User implements Serializable{
     private long uid;
     private String profileImageUrl;
     private String screenName;
+    private String tagLine;
+    private int followersCount;
+    private int followingCount;
+
 
     public long getUid() {
         return uid;
@@ -38,6 +42,17 @@ public class User implements Serializable{
     }
 
 
+    public String getTagLine() {
+        return tagLine;
+    }
+
+    public int getFollowersCount() {
+        return followersCount;
+    }
+
+    public int getFollowingCount() {
+        return followingCount;
+    }
 
     public User(JSONObject jsonUser) {
         try {
@@ -45,6 +60,10 @@ public class User implements Serializable{
             profileImageUrl = jsonUser.getString("profile_image_url");
             uid = jsonUser.getLong("id");
             screenName = jsonUser.getString("screen_name");
+            tagLine = jsonUser.getString("description");
+            followersCount = jsonUser.getInt("followers_count");
+            followingCount = jsonUser.getInt("friends_count");
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
